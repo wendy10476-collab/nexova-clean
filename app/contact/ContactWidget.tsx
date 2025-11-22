@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 
 export default function ContactWidget() {
@@ -8,25 +9,35 @@ export default function ContactWidget() {
     <>
       {/* Floating Contact Button */}
       <button
-        onClick={() => setOpen(true)}
-        className="fixed bottom-6 right-6 z-50 bg-black text-white px-5 py-3 rounded-full shadow-lg border border-gray-500 hover:shadow-[0_0_15px_rgba(180,180,180,0.8)] transition-all duration-300"
-        style={{
-          boxShadow: "0 0 10px rgba(180,180,180,0.5)",
-          borderColor: "rgba(200,200,200,0.8)",
-        }}
+        onClick={() => setOpen(!open)}
+        className="fixed bottom-6 right-6 bg-black text-white px-5 py-3 rounded-full shadow-xl hover:bg-gray-800 transition z-50"
       >
         Contact Us
       </button>
 
-      {/* Dark Background Overlay */}
+      {/* Popup Panel */}
       {open && (
-        <div
-          onClick={() => setOpen(false)}
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
-        ></div>
-      )}
+        <div className="fixed bottom-20 right-6 bg-white shadow-2xl rounded-2xl p-5 w-72 border z-50">
+          <h3 className="text-lg font-semibold mb-3">Get in Touch</h3>
+          <p className="text-sm text-gray-600 mb-4">
+            Send us a message and we’ll reply ASAP.
+          </p>
 
-      {/* Contact Form Sliding Box */}
-      <div
-        className={`fixed bottom-0 right-0 w-full sm:w-96 bg-white rounded-t-2xl shadow-xl z-50 p-6 border-l border-t border-gray-300 transition-transform duration-300 ${
-          open ? "translate-y-0" : "translate-y-full"
+          <a
+            href="mailto:nexovapulse@gmail.com"
+            className="block text-center bg-black text-white py-2 rounded-lg hover:bg-gray-900 transition"
+          >
+            Email Us
+          </a>
+
+          <button
+            onClick={() => setOpen(false)}
+            className="mt-3 w-full text-center bg-gray-200 py-2 rounded-lg hover:bg-gray-300 transition"
+          >
+            Close
+          </button>
+        </div>
+      )}
+    </>
+  );
+}
