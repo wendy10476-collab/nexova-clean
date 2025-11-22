@@ -1,45 +1,37 @@
 "use client";
-import { useState } from "react";
 
-export default function Home() {
-  const [message, setMessage] = useState("");
+import Link from "next/link";
+import Image from "next/image";
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const form = document.createElement("form");
-    form.action = "https://formsubmit.co/wendy10476@gmail.com";
-    form.method = "POST";
-
-    const input = document.createElement("input");
-    input.type = "hidden";
-    input.name = "message";
-    input.value = message;
-
-    form.appendChild(input);
-    document.body.appendChild(form);
-    form.submit();
-  };
-
+export default function HomePage() {
   return (
-    <main className="p-10 text-center">
-      <h1 className="text-4xl font-bold mb-6">Welcome to Nexova Pulse</h1>
+    <main className="min-h-screen bg-black text-white p-6">
+      <header className="flex justify-between items-center mb-10">
+        <h1 className="text-3xl font-bold">Nexova Pulse</h1>
+        <nav className="space-x-6">
+          <Link href="/rings">Rings</Link>
+          <Link href="/pricing">Pricing</Link>
+          <Link href="/features">Features</Link>
+          <Link href="/about">About</Link>
+          <Link href="/contact">Contact</Link>
+        </nav>
+      </header>
 
-      <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4">
-        <textarea
-          placeholder="Type your message..."
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          className="p-3 border rounded-lg w-80 text-black"
+      <section className="text-center mt-20">
+        <h2 className="text-4xl font-bold mb-4">
+          The Future of Smart Rings is Here.
+        </h2>
+        <p className="text-gray-300 max-w-2xl mx-auto mb-10">
+          Elegant. Powerful. Designed to elevate your everyday life.
+        </p>
+        <Image
+          src="/rings/silver.png"
+          alt="Nexova Pulse Smart Ring"
+          width={500}
+          height={500}
+          className="mx-auto rounded-xl"
         />
-
-        <button
-          type="submit"
-          className="bg-blue-600 px-4 py-2 rounded-lg text-white hover:bg-blue-700"
-        >
-          Send Message
-        </button>
-      </form>
+      </section>
     </main>
   );
 }
